@@ -107,6 +107,11 @@ const selectOption = (selectLocator,typeName) => {
     $(selectLocator).element(By.cssContainingText('option', typeName)).click();
 };
 
+const scrollToElement = async (selector) => {
+    const elm = await getElement(selector);
+    await browser.executeScript("arguments[0].scrollIntoView();", elm.getWebElement());
+};
+
 module.exports = {
     selectOption,
     reloadPage,
@@ -123,4 +128,5 @@ module.exports = {
     isPresent,
     getElementsWithoutWaiting,
     getElementsByXpath,
+    scrollToElement
 };

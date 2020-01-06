@@ -4,7 +4,7 @@
   "dependencies": {
     "allure-commandline": "^2.13.0",
     "jasmine-allure-reporter": "^1.0.2",
-    "protractor": "6.0.0"
+    "protractor": "5.4.2"
   },
   "scripts": {
     "the-actual-test": "protractor conf.js",

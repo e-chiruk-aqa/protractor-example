@@ -8,6 +8,11 @@ const isPageOpen = async () => {
     return pageHelpers.isVisible(selectors.pageLocator);
 };
 
+const openTabByName = async (tabName) => {
+    await pageHelpers.waitForSelectorAndClick(`//span[@class='b-main-navigation__text' and text()='${tabName}']`);
+};
+
 module.exports = {
-    isPageOpen
+    isPageOpen,
+    openTabByName
 };
