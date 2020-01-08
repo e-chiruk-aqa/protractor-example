@@ -4,6 +4,7 @@ const timeoutConstants = require('../constants/timeoutConstants');
 const defaultWaitOptions = require('../../settings').defaultWaitOptions;
 
 const getElement = async (selector) => {
+    browser.logger.info(`Find element with selector: ${selector}`);
     if (selector.includes('//')) {
         return element(by.xpath(`${selector}`));
     } else {
@@ -38,6 +39,7 @@ const getElementsWithoutWaiting = async (selector) => {
 const waitForSelectorAndClick = async (selector, timeout = defaultWaitOptions) => {
     const element = await getElement(selector);
     await waitForSelector(selector, timeout);
+    browser.logger.info(`Click element with selector: ${selector}`);
     await browser.wait(EC.elementToBeClickable(element), timeout)
         .then(element.click);
 };
@@ -49,6 +51,7 @@ const waitForSelectorNotVisible = async (selector, timeout = defaultWaitOptions)
 
 const waitForSelectorAndType = async (selector, text, timeout = defaultWaitOptions) => {
     const element = await getElement(selector);
+    browser.logger.info(`Sending keys: ${selector}`);
     await browser.wait(EC.presenceOf(element), timeout);
     element.sendKeys(text);
 };
@@ -56,6 +59,7 @@ const waitForSelectorAndType = async (selector, text, timeout = defaultWaitOptio
 const isVisible = async (selector) => {
     try {
         const element = await getElement(selector);
+        browser.logger.info(`Check is displayed: ${selector}`);
         await browser.wait(EC.presenceOf(element), timeoutConstants.TIMEOUTS.MAX);
         await browser.wait(EC.visibilityOf(element), timeoutConstants.TIMEOUTS.MEDIUM);
         return true;
@@ -67,6 +71,7 @@ const isVisible = async (selector) => {
 const isPresent = async (selector) => {
     try {
         const element = await getElement(selector);
+        browser.logger.info(`Check existence: ${selector}`);
         await browser.wait(EC.presenceOf(element), timeoutConstants.TIMEOUTS.MAX);
         return true;
     } catch (e) {
@@ -77,6 +82,7 @@ const isPresent = async (selector) => {
 const getElementText = async (selector, options = {}) => {
     await waitForSelector(selector, defaultWaitOptions);
     const element = await getElement(selector);
+    browser.logger.info(`Getting text: ${selector}`);
     if (options.innerText) {
         return element.getAttribute('innerText');
     } else if (options.innerHTML) {
@@ -87,28 +93,34 @@ const getElementText = async (selector, options = {}) => {
 
 const getElementValue = async (selector) => {
     const elem = await getElement(selector);
+    browser.logger.info(`Getting value: ${selector}`);
     return elem.getAttribute('value');
 };
 
 const clickViaJS = async (selector) => {
     const elm = await getElement(selector);
+    browser.logger.info(`Clicking via js: ${selector}`);
     await browser.executeScript('arguments[0].click();', elm.getWebElement());
 };
 
 const navigateToPage = async (link) => {
+    browser.logger.info(`Navigate to: ${link}`);
     return browser.get(link);
 };
 
 const reloadPage = async () => {
+    browser.logger.info(`Reloading page`);
     return browser.driver.navigate().refresh();
 };
 
-const selectOption = (selectLocator,typeName) => {
+const selectOption = (selectLocator, typeName) => {
+    browser.logger.info(`Selecting option: ${typeName}`);
     $(selectLocator).element(By.cssContainingText('option', typeName)).click();
 };
 
 const scrollToElement = async (selector) => {
     const elm = await getElement(selector);
+    browser.logger.info(`Scrolling to element: ${selector}`);
     await browser.executeScript("arguments[0].scrollIntoView();", elm.getWebElement());
 };
 

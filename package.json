@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "dependencies": {
     "allure-commandline": "^2.13.0",
-    "jasmine-allure-reporter": "^1.0.2",
+    "app-root-path": "^3.0.0",
+    "log4js": "^6.1.0",
+    "log4js-protractor-appender": "^1.1.2",
     "protractor": "5.4.2"
   },
   "scripts": {
     "the-actual-test": "protractor conf.js",
-    "test": "npm-run-all the-actual-test run-after-test-even-if-failed --continue-on-error",
-    "run-after-test-even-if-failed": "allure generate allure-results --clean -o allure-report || true"
+    "test": "npm-run-all the-actual-test --continue-on-error"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "npm-run-all": "^4.1.5"
+    "jasmine": "latest",
+    "npm-run-all": "^4.1.5",
+    "protractor-beautiful-reporter": "^1.3.6"
   }
 }
