@@ -2,19 +2,19 @@
 
 Simple example of how to use protractor  
 
-###Requirements
+### Requirements
 
 * Node.js
 * npm
 
-###Setup
+### Setup
 
    1. ```npm install```
    2. ```webdriver-manager update```
    3. ```webdriver-manager start```
    4. ```npm test```
    
-###Tools
+### Tools
 
 * Protractor
 * Mocha
