@@ -13,6 +13,7 @@ const selectProduct = async (name) => {
         await pageHelpers.scrollToElement(selectors.nextPage);
         await pageHelpers.waitForSelectorAndClick(selectors.nextPage);
     }
+    await pageHelpers.waitForJsLoads();
     await pageHelpers.waitForSelector(productSelector(name));
     await pageHelpers.scrollToElement(productSelector(name));
     await pageHelpers.waitForSelectorAndClick(productSelector(name));

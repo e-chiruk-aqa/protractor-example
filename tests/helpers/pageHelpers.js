@@ -79,6 +79,10 @@ const isPresent = async (selector) => {
     }
 };
 
+const waitForJsLoads = async () => {
+      await browser.waitForAngular();
+};
+
 const getElementText = async (selector, options = {}) => {
     await waitForSelector(selector, defaultWaitOptions);
     const element = await getElement(selector);
@@ -140,5 +144,6 @@ module.exports = {
     isPresent,
     getElementsWithoutWaiting,
     getElementsByXpath,
-    scrollToElement
+    scrollToElement,
+    waitForJsLoads
 };

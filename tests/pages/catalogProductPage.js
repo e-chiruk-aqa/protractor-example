@@ -2,7 +2,7 @@ const pageHelpers = require('../helpers/pageHelpers');
 
 const selectors = {
     pageLocator: '//div[contains(@class, \'product_details\')]',
-    titleLabel: '//p[@itemprop=\'description\']'
+    titleLabel: '//h1[@class=\'catalog-masthead__title\']'
 };
 
 const isPageOpen = async () => {
@@ -10,7 +10,7 @@ const isPageOpen = async () => {
 };
 
 const getProductTitle = async () => {
-    await pageHelpers.getElementText(selectors.titleLabel);
+    return pageHelpers.getElementText(selectors.titleLabel);
 };
 
 module.exports = {
